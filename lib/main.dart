@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:movingacard/providers/files.dart';
 import 'package:movingacard/providers/products.dart';
+import 'package:movingacard/screens/file_detailed_screen.dart';
+import 'package:movingacard/screens/files_home_screen.dart';
 import 'package:provider/provider.dart';
 
 import 'package:movingacard/screens/products_overview_screen.dart';
@@ -18,10 +21,12 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider(
           create: (ctx) => Products(),
         ),
+        ChangeNotifierProvider(
+          create: (ctx) => Files(),
+        ),
+
       ],
-      child: ChangeNotifierProvider(
-        create: (ctx) => Products(),
-        child: MaterialApp(
+      child: MaterialApp(
           debugShowCheckedModeBanner: false,
 
           theme: ThemeData(
@@ -50,9 +55,11 @@ class MyApp extends StatelessWidget {
 
             )
           ),
-          home: ProductsOverviewScreen(),
+          home: FilesHomeScreen(),
+        routes: {
+          '/file_detailed': (ctx) => const FileDetailedScreen(),
+        },
         ),
-      ),
     );
   }
 }
