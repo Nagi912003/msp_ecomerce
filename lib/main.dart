@@ -33,12 +33,26 @@ class MyApp extends StatelessWidget {
             useMaterial3: true,
             // brightness: Brightness.dark,
 
+              colorScheme: ColorScheme.fromSwatch(
+                primarySwatch: Colors.blue,
+                accentColor: Colors.blueAccent,
+                cardColor: Colors.blueGrey,
+                backgroundColor: Colors.blueGrey,
+                errorColor: Colors.red,
+                brightness: Brightness.light,
+              ),
               textTheme: const TextTheme(
                 titleLarge: TextStyle(
-                  fontSize: 30,
+                  fontSize: 35,
                   fontWeight: FontWeight.bold,
                   color: Colors.black,
                 ),
+              bodyLarge: TextStyle(
+                fontSize: 20,
+                fontWeight: FontWeight.bold,
+                color: Colors.black,
+              ),
+
 
 
               // colorScheme: ColorScheme.fromSwatch(
@@ -55,6 +69,10 @@ class MyApp extends StatelessWidget {
 
             )
           ),
+          darkTheme: ThemeData(
+
+          ),
+          themeMode: ThemeMode.system,
           home: FilesHomeScreen(),
         routes: {
           '/file_detailed': (ctx) => const FileDetailedScreen(),

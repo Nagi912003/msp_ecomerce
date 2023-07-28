@@ -3,30 +3,34 @@ import 'package:movingacard/providers/files.dart';
 import 'package:provider/provider.dart';
 
 class FilesHomeScreen extends StatelessWidget {
-  const FilesHomeScreen({super.key});
+  FilesHomeScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
+
     final files = Provider.of<Files>(context).items;
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Files'),
+        title: Text('Files', style: Theme.of(context).textTheme.bodyLarge!.copyWith(
+
+        ),),
       ),
-      body:
+      body: ListView(
+        children: files
+            .map(
+              (e) => ListTile(
+                title: Text(e.title),
+                subtitle: Text(e.date),
+                trailing: Text(e.quantity.toString()),
+                onTap: () {
 
-      ListView(
-        children:
-          files.map((e) =>
-         ListTile(
-            title: Text(e.title),
-            subtitle: Text(e.date),
-            trailing: Text(e.quantity.toString()),
-            onTap: (){
-              Navigator.of(context).pushNamed('/file_detailed',arguments: e.title);
-            },
-          ),
-          ).toList(),
-
+                  Navigator.of(context)
+                      .pushNamed('/file_detailed', arguments: e.title);
+                },
+              ),
+            )
+            .toList(),
       ),
 
       // ListView.builder(
